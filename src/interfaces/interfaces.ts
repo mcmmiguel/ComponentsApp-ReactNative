@@ -11,3 +11,9 @@ export interface FlatListMenuItemProps {
 export interface HeaderTitleProps {
     title: string;
 }
+
+export interface CustomSwitchProps {
+    isOn: boolean;
+    onChange: (isEnabled: boolean) => void;
+}
+
