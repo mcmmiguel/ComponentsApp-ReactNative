@@ -19,6 +19,16 @@ export const AlertScreen = () => {
         });
     };
 
+    const showPrompt = () => {
+        Alert.prompt('¿Está seguro?',
+            'Esta acción es irreversible',
+            (value: string) => console.log('info', value),
+            'plain-text',
+            'Hola',
+            'number-pad'
+        );
+    };
+
     return (
         <View style={appTheme.appContainer}>
             <HeaderTitle title="Alerts" />
@@ -26,6 +36,12 @@ export const AlertScreen = () => {
             <Button
                 title="Mostrar alerta"
                 onPress={showAlert}
+            />
+
+            {/* Solo funciona en iOS */}
+            <Button
+                title="Mostrar prompt (solo iOS)"
+                onPress={showPrompt}
             />
         </View>
     );
