@@ -7,3 +7,7 @@ export interface MenuItemProps {
 export interface FlatListMenuItemProps {
     menuItem: MenuItemProps;
 }
+
+export interface HeaderTitleProps {
+    title: string;
+}
