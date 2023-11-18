@@ -1,10 +1,14 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import { View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { StackNavigator } from './src/navigation';
 
-export const App = () => {
+const App = () => {
   return (
-    <View>
-      <Text>App</Text>
-    </View>
+    <NavigationContainer>
+      <StackNavigator />
+    </NavigationContainer>
   );
 };
+
+export default App;
