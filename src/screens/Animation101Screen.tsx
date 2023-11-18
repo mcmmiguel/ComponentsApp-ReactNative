@@ -1,51 +1,10 @@
-import React, { useRef } from 'react';
-import { View, StyleSheet, Animated, Button, Easing } from 'react-native';
+import React from 'react';
+import { View, StyleSheet, Animated, Button } from 'react-native';
+import { useAnimation } from '../hooks';
 
 export const Animation101Screen = () => {
 
-    const opacity = useRef(new Animated.Value(0)).current;
-    const top = useRef(new Animated.Value(-100)).current;
-
-    const fadeIn = () => {
-        Animated.timing(
-            opacity,
-            {
-                toValue: 1,
-                duration: 300,
-                useNativeDriver: true,
-            }
-        ).start(() => console.log('La animación terminó'));
-
-        Animated.timing(
-            top,
-            {
-                toValue: 0,
-                duration: 800,
-                useNativeDriver: true,
-                easing: Easing.bounce,
-            }
-        ).start();
-    };
-
-    const fadeOut = () => {
-        Animated.timing(
-            opacity,
-            {
-                toValue: 0,
-                duration: 300,
-                useNativeDriver: true,
-            }
-        ).start();
-
-        Animated.timing(
-            top,
-            {
-                toValue: -100,
-                duration: 800,
-                useNativeDriver: true,
-            }
-        ).start();
-    };
+    const { position, opacity, fadeIn, fadeOut, startMovingPosition } = useAnimation();
 
     return (
         <View style={styles.mainContainer}>
@@ -53,10 +12,13 @@ export const Animation101Screen = () => {
                 ...styles.purpleBox,
                 opacity,
                 transform: [{
-                    translateY: top,
+                    translateY: position,
                 }],
             }} />
-            <Button title="Fade In" onPress={fadeIn} />
+            <Button title="Fade In" onPress={() => {
+                fadeIn();
+                startMovingPosition(-100);
+            }} />
             <Button title="Fade Out" onPress={fadeOut} />
         </View>
     );
