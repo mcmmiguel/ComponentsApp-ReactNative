@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { FlatList, Image, StyleSheet, View } from 'react-native';
-import { HeaderTitle } from '../components';
+import { FlatList, StyleSheet, View } from 'react-native';
+import { FadeInImage, HeaderTitle } from '../components';
 import { ActivityIndicator } from 'react-native';
 
 export const InfiniteScrollScreen = () => {
@@ -20,9 +20,12 @@ export const InfiniteScrollScreen = () => {
 
     const renderItem = (item: number) => {
         return (
-            <Image
-                style={styles.image}
-                source={{ uri: `https://picsum.photos/id/${item}/500/400` }}
+            <FadeInImage
+                style={{
+                    width: '100%',
+                    height: 400,
+                }}
+                uri={`https://picsum.photos/id/${item}/500/400`}
             />
         );
     };
@@ -33,7 +36,11 @@ export const InfiniteScrollScreen = () => {
                 data={numbers}
                 keyExtractor={(item: any) => item.toString()}
                 renderItem={({ item }) => renderItem(item)}
-                ListHeaderComponent={<HeaderTitle title="Infinite Scroll" />}
+                ListHeaderComponent={() => (
+                    <View style={styles.titleContainer}>
+                        <HeaderTitle title="Infinite Scroll" />
+                    </View>
+                )}
                 ListFooterComponent={() => (
                     <View style={styles.loaderContainer}>
                         <ActivityIndicator size={25} color="#5856d6" />
@@ -49,6 +56,10 @@ export const InfiniteScrollScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    titleContainer: {
+        marginHorizontal: 20,
+
     },
     textItem: {
         backgroundColor: 'green',

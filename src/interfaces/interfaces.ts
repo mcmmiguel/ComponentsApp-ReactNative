@@ -1,3 +1,5 @@
+import { ImageStyle, StyleProp } from 'react-native';
+
 export interface MenuItemProps {
     name: string;
     icon: string;
@@ -17,3 +19,7 @@ export interface CustomSwitchProps {
     onChange: (isEnabled: boolean) => void;
 }
 
+export interface FadeInImageProps {
+    uri: string;
+    style?: StyleProp<ImageStyle>;
+}
