@@ -8,3 +8,4 @@ export { PullToRefresh } from './PullToRefresh';
 export { SectionListScreen } from './SectionListScreen';
 export { ModalScreen } from './ModalScreen';
 export { InfiniteScrollScreen } from './InfiniteScrollScreen';
+export { SlidesScreen } from './SlidesScreen';

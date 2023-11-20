@@ -1,5 +1,4 @@
-import { ImageStyle, StyleProp } from 'react-native';
-
+import { ImageStyle, StyleProp, ImageSourcePropType } from 'react-native';
 export interface MenuItemProps {
     name: string;
     icon: string;
@@ -22,4 +21,10 @@ export interface CustomSwitchProps {
 export interface FadeInImageProps {
     uri: string;
     style?: StyleProp<ImageStyle>;
+}
+
+export interface Slide {
+    title: string;
+    desc: string;
+    img: ImageSourcePropType
 }
