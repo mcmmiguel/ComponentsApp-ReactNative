@@ -1,18 +1,24 @@
-import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import { AlertScreen, Animation101Screen, Animation102Screen, ChangeThemeScreen, HomeScreen, InfiniteScrollScreen, ModalScreen, PullToRefresh, SectionListScreen, SlidesScreen, SwitchScreen, TextInputScreen } from '../screens';
+import React, { useContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { ThemeContext } from '../context';
+import { AlertScreen, Animation101Screen, Animation102Screen, ChangeThemeScreen, HomeScreen, InfiniteScrollScreen, ModalScreen, PullToRefresh, SectionListScreen, SlidesScreen, SwitchScreen, TextInputScreen } from '../screens';
 
 export const Stack = createStackNavigator();
 
 export const StackNavigator = () => {
+
+    const { theme } = useContext(ThemeContext);
+
     return (
-        <NavigationContainer>
+        <NavigationContainer
+            theme={theme}
+        >
             <Stack.Navigator screenOptions={{
                 headerShown: false,
-                // cardStyle: {
-                //     backgroundColor: 'white',
-                // },
+                cardStyle: {
+                    //     backgroundColor: 'white',
+                },
             }}>
                 <Stack.Screen name="HomeScreen" component={HomeScreen} />
                 <Stack.Screen name="Animation101Screen" component={Animation101Screen} />

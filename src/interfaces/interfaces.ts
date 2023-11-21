@@ -30,6 +30,11 @@ export interface Slide {
     img: ImageSourcePropType
 }
 
+export interface ThemeContextProps {
+    theme: ThemeState;
+    setDarkTheme: () => void;
+    setLightTheme: () => void;
+}
 export interface ThemeState extends Theme {
     currentTheme: 'light' | 'dark';
     dividerColor: string;

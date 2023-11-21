@@ -6,26 +6,39 @@ import { ThemeContext } from '../context';
 
 export const ChangeThemeScreen = () => {
 
-    const { setDarkTheme } = useContext(ThemeContext);
+    const { setDarkTheme, setLightTheme, theme: { colors } } = useContext(ThemeContext);
 
     return (
         <View style={appTheme.appContainer}>
             <HeaderTitle title="Theme" />
 
-            <TouchableOpacity
-                activeOpacity={0.8}
-                style={styles.button}
-                onPress={setDarkTheme}
-            >
-                <Text style={styles.buttonText}>Light / Dark</Text>
-            </TouchableOpacity>
+            <View style={styles.buttonsContainer}>
+                <TouchableOpacity
+                    activeOpacity={0.8}
+                    style={{ ...styles.button, backgroundColor: colors.primary }}
+                    onPress={setLightTheme}
+                >
+                    <Text style={styles.buttonText}>Light</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    activeOpacity={0.8}
+                    style={{ ...styles.button, backgroundColor: colors.primary }}
+                    onPress={setDarkTheme}
+                >
+                    <Text style={styles.buttonText}>Dark</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
+    buttonsContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
     button: {
-        backgroundColor: '#5856d6',
         justifyContent: 'center',
         width: 150,
         height: 50,
