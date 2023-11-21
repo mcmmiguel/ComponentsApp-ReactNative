@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { SectionList, StyleSheet, Text, View } from 'react-native';
 import { HeaderTitle, ItemSeparator } from '../components';
 import { appTheme } from '../theme/appTheme';
 import { casas } from '../data';
+import { ThemeContext } from '../context';
 
 export const SectionListScreen = () => {
+
+    const { theme: { colors } } = useContext(ThemeContext);
+
     return (
         <View style={[appTheme.appContainer, styles.container]}>
 
             <SectionList
                 sections={casas}
-                renderItem={({ item }: any) => <Text>{item}</Text>}
+                renderItem={({ item }: any) => <Text style={{ color: colors.text }}>{item}</Text>}
                 keyExtractor={(item, index) => item + index}
 
                 ListHeaderComponent={() => <HeaderTitle title="Section List" />}
@@ -18,7 +22,7 @@ export const SectionListScreen = () => {
 
                 stickySectionHeadersEnabled
                 renderSectionHeader={({ section }) => (
-                    <View style={styles.headerContainer}>
+                    <View style={{ ...styles.headerContainer, backgroundColor: colors.background }}>
                         <HeaderTitle title={section.casa} />
                     </View>
                 )}
@@ -37,6 +41,5 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     headerContainer: {
-        backgroundColor: 'white',
     },
 });

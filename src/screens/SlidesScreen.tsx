@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { View, StyleSheet, Text, Dimensions, Image, TouchableOpacity, Animated } from 'react-native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -8,12 +8,14 @@ import { items } from '../data';
 import { Slide } from '../interfaces';
 import { useAnimation } from '../hooks';
 import { useNavigation } from '@react-navigation/native';
+import { ThemeContext } from '../context';
 
 const { width: screenWidth } = Dimensions.get('window');
 
 export const SlidesScreen = () => {
 
     const navigation = useNavigation();
+    const { theme: { colors } } = useContext(ThemeContext);
 
     const [activeIndex, setActiveIndex] = useState(0);
     // const [isVisible, setIsVisible] = useState(false);
@@ -23,19 +25,19 @@ export const SlidesScreen = () => {
     const renderItem = (item: Slide) => {
 
         return (
-            <View style={styles.itemContainer}>
+            <View style={{ ...styles.itemContainer, backgroundColor: colors.background }}>
                 <Image
                     source={item.img}
                     style={styles.itemImage}
                 />
-                <Text style={styles.itemTitle}>{item.title}</Text>
-                <Text style={styles.itemDescription}>{item.desc}</Text>
+                <Text style={{ ...styles.itemTitle, color: colors.primary }}>{item.title}</Text>
+                <Text style={{ ...styles.itemDescription, color: colors.text }}>{item.desc}</Text>
             </View>
         );
     };
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={{ ...styles.container, backgroundColor: colors.background }}>
             <HeaderTitle title="Slides Screen" />
             <Carousel
                 // ref={(c) => { this._carousel = c; }}
@@ -57,12 +59,12 @@ export const SlidesScreen = () => {
                 <Pagination
                     dotsLength={items.length}
                     activeDotIndex={activeIndex}
-                    dotStyle={styles.paginationDots}
+                    dotStyle={{ ...styles.paginationDots, backgroundColor: colors.primary }}
                 />
 
                 <Animated.View style={{ opacity }}>
                     <TouchableOpacity
-                        style={styles.paginationButton}
+                        style={{ ...styles.paginationButton, backgroundColor: colors.primary }}
                         activeOpacity={0.8}
                         onPress={() => {
                             if (isVisible.current) {
@@ -70,7 +72,7 @@ export const SlidesScreen = () => {
                             }
                         }}
                     >
-                        <Text style={styles.paginationButtonText}>Entrar</Text>
+                        <Text style={{ ...styles.paginationButtonText }}>Entrar</Text>
                         <Icon name="chevron-forward-outline" color="white" size={35} />
                     </TouchableOpacity>
                 </Animated.View>
@@ -87,7 +89,6 @@ const styles = StyleSheet.create({
     },
     itemContainer: {
         flex: 1,
-        backgroundColor: 'white',
         borderRadius: 5,
         padding: 40,
         justifyContent: 'center',
@@ -100,7 +101,6 @@ const styles = StyleSheet.create({
     itemTitle: {
         fontSize: 30,
         fontWeight: 'bold',
-        color: '#5658d6',
     },
     itemDescription: {
         fontSize: 16,
@@ -115,11 +115,9 @@ const styles = StyleSheet.create({
         width: 10,
         height: 10,
         borderRadius: 10,
-        backgroundColor: '#5856d6',
     },
     paginationButton: {
         flexDirection: 'row',
-        backgroundColor: '#5856d6',
         width: 150,
         height: 50,
         borderRadius: 10,

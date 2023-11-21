@@ -9,28 +9,28 @@ type ThemeAction =
 export const lightTheme: ThemeState = {
     currentTheme: 'light',
     dark: false,
-    dividerColor: 'rgba(0, 0, 0, 0.7)',
+    dividerColor: 'rgba(0, 0, 0, 0.6)',
     colors: {
         primary: '#084f6a',
         background: 'white',
-        card: 'green',
+        card: 'white',
         text: 'black',
-        border: 'orange',
-        notification: 'yellow',
+        border: 'black',
+        notification: 'teal',
     },
 };
 
 export const darkTheme: ThemeState = {
     currentTheme: 'dark',
     dark: true,
-    dividerColor: 'rgba(0, 0, 0, 0.7)',
+    dividerColor: 'rgba(255, 255, 255, 0.6)',
     colors: {
         primary: '#75cedb',
         background: 'black',
-        card: 'green',
+        card: 'black',
         text: 'white',
-        border: 'orange',
-        notification: 'yellow',
+        border: 'black',
+        notification: 'teal',
     },
 };
 

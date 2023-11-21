@@ -16,7 +16,7 @@ export const FlatListMenuItem = ({ menuItem }: FlatListMenuItemProps) => {
             <View style={styles.mainContainer}>
                 <View style={styles.itemContainer}>
                     <Icon name={menuItem.icon} size={25} color={colors.primary} />
-                    <Text style={styles.itemText}>{menuItem.name}</Text>
+                    <Text style={{ ...styles.itemText, color: colors.text }}>{menuItem.name}</Text>
                 </View>
                 <Icon name="chevron-forward-outline" size={25} color={colors.primary} />
             </View >
