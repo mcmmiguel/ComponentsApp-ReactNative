@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 export const FlatListMenuItem = ({ menuItem }: FlatListMenuItemProps) => {
 
     const navigation = useNavigation();
+    // const {colors } = useTheme();
 
     return (
         <TouchableOpacity activeOpacity={0.8} onPress={() => navigation.navigate(menuItem.component as never)}>
