@@ -1,15 +1,22 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useContext } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { appTheme } from '../theme/appTheme';
 import { HeaderTitle } from '../components';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { ThemeContext } from '../context';
 
 export const ChangeThemeScreen = () => {
+
+    const { setDarkTheme } = useContext(ThemeContext);
+
     return (
         <View style={appTheme.appContainer}>
             <HeaderTitle title="Theme" />
 
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+                activeOpacity={0.8}
+                style={styles.button}
+                onPress={setDarkTheme}
+            >
                 <Text style={styles.buttonText}>Light / Dark</Text>
             </TouchableOpacity>
         </View>

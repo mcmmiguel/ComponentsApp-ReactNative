@@ -1,3 +1,4 @@
+import { Theme } from '@react-navigation/native';
 import { ImageStyle, StyleProp, ImageSourcePropType } from 'react-native';
 export interface MenuItemProps {
     name: string;
@@ -27,4 +28,9 @@ export interface Slide {
     title: string;
     desc: string;
     img: ImageSourcePropType
+}
+
+export interface ThemeState extends Theme {
+    currentTheme: 'light' | 'dark';
+    dividerColor: string;
 }
