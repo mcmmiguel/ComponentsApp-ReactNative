@@ -1,12 +1,34 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useEffect, useReducer } from 'react';
+import { useColorScheme, AppState, Appearance } from 'react-native';
 import { ThemeContextProps } from '../interfaces';
-import { lightTheme, themeReducer } from './themeReducer';
+import { darkTheme, lightTheme, themeReducer } from './themeReducer';
 
 export const ThemeContext = createContext({} as ThemeContextProps);
 
 export const ThemeProvider = ({ children }: any) => {
 
-    const [theme, dispatch] = useReducer(themeReducer, lightTheme);
+    // const colorScheme = useColorScheme();
+    const [theme, dispatch] = useReducer(
+        themeReducer,
+        (Appearance.getColorScheme() === 'dark') ? darkTheme : lightTheme
+    );
+
+    useEffect(() => {
+        AppState.addEventListener('change', (status) => {
+            if (status === 'active') {
+                (Appearance.getColorScheme() === 'light')
+                    ? setLightTheme()
+                    : setDarkTheme();
+            }
+        });
+    }, []);
+
+    // Solo iOS
+    // useEffect(() => {
+    //     (colorScheme === 'light')
+    //     ? setLightTheme()
+    //     : setDarkTheme();
+    // }, [colorScheme]);
 
     const setDarkTheme = () => {
         dispatch({ type: 'set_dark_Theme' });
